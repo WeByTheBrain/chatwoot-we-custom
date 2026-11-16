@@ -1,9 +1,12 @@
+const FAVICON_PATH = '/faviconthebrain/favicon-96x96.png';
+const BADGE_FAVICON_PATH = '/faviconthebrain/favicon-badge.svg';
+
 export const showBadgeOnFavicon = () => {
   const favicons = document.querySelectorAll('.favicon');
 
   favicons.forEach(favicon => {
-    const newFileName = `/favicon-badge-${favicon.sizes[[0]]}.png`;
-    favicon.href = newFileName;
+    favicon.type = 'image/svg+xml';
+    favicon.href = BADGE_FAVICON_PATH;
   });
 };
 
@@ -13,8 +16,8 @@ export const initFaviconSwitcher = () => {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
       favicons.forEach(favicon => {
-        const oldFileName = `/favicon-${favicon.sizes[[0]]}.png`;
-        favicon.href = oldFileName;
+        favicon.type = 'image/png';
+        favicon.href = FAVICON_PATH;
       });
     }
   });
