@@ -1,0 +1,75 @@
+name: Build & Deploy Custom Chatwoot
+
+on:
+  push:
+    branches:
+      - we-custom
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  PROJECT_ID: we-self-chatbot
+  REGION: asia-southeast1
+  ZONE: asia-southeast1-b
+  VM_NAME: chatwoot-vm-prod
+  WIF_PROVIDER: projects/329160201420/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider
+  WIF_SA: sa-github-deployer-prod@we-self-chatbot.iam.gserviceaccount.com
+  REGISTRY: asia-southeast1-docker.pkg.dev/we-self-chatbot/docker-repo/chatwoot
+  IMAGE_TAG: v4.19.1-we-custom
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Prepare CE Edition
+        run: |
+          rm -rf enterprise spec/enterprise
+          echo -en '\nENV CW_EDITION="ce"' >> docker/Dockerfile
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Authenticate to Google Cloud via WIF
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.WIF_SA }}
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      - name: Build and Push Custom Chatwoot Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}:${{ env.IMAGE_TAG }}
+            ${{ env.REGISTRY }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy-to-prod-vm:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate to Google Cloud via WIF
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.WIF_SA }}
+
+      - name: Deploy Custom Image to Production VM via IAP SSH
+        run: |
+          gcloud compute ssh ${{ env.VM_NAME }} \
+            --zone=${{ env.ZONE }} \
+            --project=${{ env.PROJECT_ID }} \
+            --tunnel-through-iap \
+            --command="sudo grep -q '^CHATWOOT_IMAGE=' /opt/chatwoot/.env && sudo sed -i 's|^CHATWOOT_IMAGE=.*|CHATWOOT_IMAGE=${{ env.REGISTRY }}:${{ env.IMAGE_TAG }}|' /opt/chatwoot/.env || echo 'CHATWOOT_IMAGE=${{ env.REGISTRY }}:${{ env.IMAGE_TAG }}' | sudo tee -a /opt/chatwoot/.env && sudo docker compose --project-directory /opt/chatwoot pull rails sidekiq && sudo docker compose --project-directory /opt/chatwoot up -d rails sidekiq"
