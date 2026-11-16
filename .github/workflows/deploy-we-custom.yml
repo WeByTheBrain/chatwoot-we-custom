@@ -72,4 +72,4 @@ jobs:
             --zone=${{ env.ZONE }} \
             --project=${{ env.PROJECT_ID }} \
             --tunnel-through-iap \
-            --command="sudo grep -q '^CHATWOOT_IMAGE=' /opt/chatwoot/.env && sudo sed -i 's|^CHATWOOT_IMAGE=.*|CHATWOOT_IMAGE=${{ env.REGISTRY }}:${{ env.IMAGE_TAG }}|' /opt/chatwoot/.env || echo 'CHATWOOT_IMAGE=${{ env.REGISTRY }}:${{ env.IMAGE_TAG }}' | sudo tee -a /opt/chatwoot/.env && sudo docker compose --project-directory /opt/chatwoot pull rails sidekiq && sudo docker compose --project-directory /opt/chatwoot up -d rails sidekiq"
+            --command="sudo grep -q '^CHATWOOT_IMAGE=' /opt/chatwoot/.env && sudo sed -i 's|^CHATWOOT_IMAGE=.*|CHATWOOT_IMAGE=${{ env.REGISTRY }}:${{ github.sha }}|' /opt/chatwoot/.env || echo 'CHATWOOT_IMAGE=${{ env.REGISTRY }}:${{ github.sha }}' | sudo tee -a /opt/chatwoot/.env && sudo docker compose --project-directory /opt/chatwoot pull rails sidekiq && sudo docker compose --project-directory /opt/chatwoot up -d rails sidekiq"
