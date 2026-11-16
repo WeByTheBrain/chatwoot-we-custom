@@ -486,12 +486,17 @@ export default {
             </router-link>
           </div>
           <SimpleDivider
-            v-if="showGoogleOAuth || showSamlLogin"
+            v-if="!showGoogleOAuth && showSamlLogin"
             :label="$t('COMMON.OR')"
             class="uppercase"
           />
         </div>
-        <form class="space-y-5" @submit.prevent="submitFormLogin">
+        <!-- Email & Password Login Form (Hidden when Google OAuth is enabled) -->
+        <form
+          v-if="!showGoogleOAuth"
+          class="space-y-5"
+          @submit.prevent="submitFormLogin"
+        >
           <FormInput
             v-model="credentials.email"
             name="email_address"
