@@ -55,13 +55,12 @@ export default {
 @tailwind components;
 @tailwind utilities;
 
+@import 'shared/assets/fonts/inter';
 @import '../dashboard/assets/scss/next-colors';
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  @apply h-full w-full;
+  @apply font-sans h-full w-full;
 
   input,
   select {

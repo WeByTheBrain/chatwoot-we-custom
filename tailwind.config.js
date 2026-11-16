@@ -40,9 +40,9 @@ const tailwindConfig = {
   theme: {
     extend: {
       fontFamily: {
-        sans: defaultSansFonts,
-        inter: ['Inter', ...defaultSansFonts],
-        interDisplay: ['InterDisplay', ...defaultSansFonts],
+        sans: ['Inter', 'Sarabun', ...defaultSansFonts],
+        inter: ['Inter', 'Sarabun', ...defaultSansFonts],
+        interDisplay: ['InterDisplay', 'Sarabun', ...defaultSansFonts],
       },
       fontWeight: {
         420: '420',
