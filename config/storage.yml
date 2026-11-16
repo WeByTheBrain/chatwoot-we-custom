@@ -20,6 +20,9 @@ google:
   project: <%= ENV.fetch('GCS_PROJECT', '') %>
   credentials: <%= ENV.fetch('GCS_CREDENTIALS', '') %>
   bucket: <%= ENV.fetch('GCS_BUCKET', '') %>
+  # ADC (no key file) cannot sign URLs locally; sign via IAM signBlob instead.
+  # Needs roles/iam.serviceAccountTokenCreator for the VM SA on itself.
+  iam: <%= ENV.fetch('GCS_CREDENTIALS', '').empty? %>
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 microsoft:
