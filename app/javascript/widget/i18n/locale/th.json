@@ -19,35 +19,35 @@
   },
   "TEAM_AVAILABILITY": {
     "ONLINE": "เรากำลังออนไลน์",
-    "OFFLINE": "เราไม่อยู่",
-    "BACK_AS_SOON_AS_POSSIBLE": "We will be back as soon as possible"
+    "OFFLINE": "ขณะนี้นอกเวลาทำการ",
+    "BACK_AS_SOON_AS_POSSIBLE": "จะกลับมาให้บริการโดยเร็วที่สุด"
   },
   "REPLY_TIME": {
     "IN_A_FEW_MINUTES": "ปกติจะตอบกลับภายในไม่กี่นาที",
     "IN_A_FEW_HOURS": "ปกติจะตอบกลับในไม่กี่ชั่วโมง",
     "IN_A_DAY": "ปกติจะตอบกลับภายใน 1 วัน",
-    "BACK_IN_HOURS": "We will be back online in {n} hour | We will be back online in {n} hours",
-    "BACK_IN_MINUTES": "We will be back online in {time} minutes",
-    "BACK_AT_TIME": "We will be back online at {time}",
-    "BACK_ON_DAY": "We will be back online on {day}",
-    "BACK_TOMORROW": "We will be back online tomorrow",
-    "BACK_IN_SOME_TIME": "We will be back online in some time"
+    "BACK_IN_HOURS": "จะกลับมาให้บริการในอีก {n} ชั่วโมง | จะกลับมาให้บริการในอีก {n} ชั่วโมง",
+    "BACK_IN_MINUTES": "จะกลับมาให้บริการในอีก {time} นาที",
+    "BACK_AT_TIME": "จะกลับมาให้บริการเวลา {time}",
+    "BACK_ON_DAY": "จะกลับมาให้บริการในวัน{day}",
+    "BACK_TOMORROW": "จะกลับมาให้บริการในวันพรุ่งนี้",
+    "BACK_IN_SOME_TIME": "จะกลับมาให้บริการในเร็ว ๆ นี้"
   },
   "DAY_NAMES": {
-    "SUNDAY": "Sunday",
-    "MONDAY": "Monday",
-    "TUESDAY": "Tuesday",
-    "WEDNESDAY": "Wednesday",
-    "THURSDAY": "Thursday",
-    "FRIDAY": "Friday",
-    "SATURDAY": "Saturday"
+    "SUNDAY": "อาทิตย์",
+    "MONDAY": "จันทร์",
+    "TUESDAY": "อังคาร",
+    "WEDNESDAY": "พุธ",
+    "THURSDAY": "พฤหัสบดี",
+    "FRIDAY": "ศุกร์",
+    "SATURDAY": "เสาร์"
   },
   "START_CONVERSATION": "เริ่มการสนทนา",
   "END_CONVERSATION": "จบการสนทนา",
   "CONTINUE_CONVERSATION": "สนทนาต่อ",
-  "YOU": "You",
+  "YOU": "คุณ",
   "START_NEW_CONVERSATION": "เริ่มการสนทนาใหม่",
-  "VIEW_UNREAD_MESSAGES": "You have unread messages",
+  "VIEW_UNREAD_MESSAGES": "คุณมีข้อความใหม่",
   "UNREAD_VIEW": {
     "VIEW_MESSAGES_BUTTON": "ดูข้อความใหม่",
     "CLOSE_MESSAGES_BUTTON": "ปิด",
@@ -59,9 +59,9 @@
   },
   "POWERED_BY": "Powered by Chatwoot",
   "EMAIL_PLACEHOLDER": "กรุณากรอกอีเมล์ของคุณ",
-  "TRANSLATING": "Translating",
-  "VIEW_ORIGINAL": "View original",
-  "VIEW_TRANSLATION": "View translation",
+  "TRANSLATING": "กำลังแปลภาษา...",
+  "VIEW_ORIGINAL": "ดูข้อความต้นฉบับ",
+  "VIEW_TRANSLATION": "ดูคำแปล",
   "CHAT_PLACEHOLDER": "พิมพ์ข้อความ",
   "TODAY": "วันนี้",
   "YESTERDAY": "เมื่อวาน",
@@ -156,6 +156,6 @@
     }
   },
   "FOOTER_REPLY_TO": {
-    "REPLY_TO": "Replying to:"
+    "REPLY_TO": "ตอบกลับ:"
   }
 }

@@ -1597,8 +1597,8 @@
       },
       "BODY": {
         "TEAM_AVAILABILITY": {
-          "ONLINE": "We are Online",
-          "OFFLINE": "เราไม่อยู่"
+          "ONLINE": "เรากำลังออนไลน์",
+          "OFFLINE": "ขณะนี้นอกเวลาทำการ"
         },
         "USER_MESSAGE": "Hi",
         "AGENT_MESSAGE": "Hello"
